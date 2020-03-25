@@ -1,0 +1,20 @@
+<navbar parameter='{{parameter}}'></navbar>
+
+<view>
+  <view>
+    <image src="/images/value.jpg"></image>
+  </view>
+
+  <view>
+    <text class="text">
+      为保证正常使用系统，现需要获取你的微信昵称
+      请点击下方授权对本程序进行授权
+    </text>
+    <view class="button-wrapper">
+      <button class="button">拒绝</button>
+      <button class="button" type="primary" bindtap='authorize'>授权</button>
+    </view>
+  </view>
+</view>
+
+<authorize bind:onLoadFun='onLoadFun' isGoIndex='{{isGoIndex}}' iShidden="{{iShidden}}" isAuto="{{isAuto}}"></authorize>

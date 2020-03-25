@@ -69,18 +69,20 @@ Page({
    * 页面跳转
   */
   goPages: function (e) {
-    wx.hideTabBar();
-    if (app.globalData.isLog) {
-      if (e.currentTarget.dataset.url == '/pages/user_spread_user/index' && this.data.userInfo.statu == 1) {
-        if (!this.data.userInfo.is_promoter) return app.Tips({ title: '您还没有推广权限！！' });
-      }
-      if (e.currentTarget.dataset.url == '/pages/logon/index') return this.setData({ switchActive: true });
-      wx.navigateTo({
-        url: e.currentTarget.dataset.url
-      })
-    } else {
-      this.setData({ iShidden: false });
-    }
+    // wx.hideTabBar();
+    // console.log(e);
+    // console.log(app);
+    // if (app.globalData.isLog) {
+    //   if (e.currentTarget.dataset.url == '/pages/user_spread_user/index' && this.data.userInfo.statu == 1) {
+    //     if (!this.data.userInfo.is_promoter) return app.Tips({ title: '您还没有推广权限！！' });
+    //   }
+    //   if (e.currentTarget.dataset.url == '/pages/logon/index') return this.setData({ switchActive: true });
+    // } else {
+    //   this.setData({ iShidden: false });
+    // }
+    wx.navigateTo({
+      url: '/pages/authorize/authorize'
+    })
   },
   /**
    * 生命周期函数--监听页面加载

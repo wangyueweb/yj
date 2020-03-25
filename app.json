@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/more/more",
     "pages/user/user",
+    "pages/authorize/authorize",
     "pages/logs/logs"
   ],
   "window": {

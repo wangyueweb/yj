@@ -3,19 +3,33 @@
 <view class="user">
 
   <view class='header bg-color acea-row row-between-wrapper'>
-    <view class='picTxt acea-row row-between-wrapper'>
-      <view class='pictrue' data-url='/pages/user_info/index' bindtap='goPages'><image src='{{userInfo.avatar}}'></image></view>
-      <view class='text'>
-          <view class='acea-row row-middle'>
-            <view class='name line1' data-url='/pages/user_info/index' bindtap='goPages'>{{userInfo.uid ? userInfo.nickname : '请点击授权'}}</view>
-            <view data-url='/pages/user_vip/index' class='member acea-row row-middle' wx:if="{{userInfo.vip}}" bindtap='goPages'>
-            <image src='{{userInfo.vip_icon}}'></image>{{userInfo.vip_name}}</view>
-          </view>
-          <view class='id' data-url='/pages/user_info/index' bindtap='goPages' wx:if='{{userInfo.phone}}'>ID：{{userInfo.uid || 0}}<text class='iconfont icon-bianji1'></text></view>
-          <view wx:else data-url='/pages/user_phone/index' bindtap='goPages'><text class="binding">绑定手机号</text></view>
-      </view>
-    </view>
-    <text class='iconfont icon-shezhi' bindtap='Setting'></text>
+    
   </view>
 
+  <view class='wrapper'>
+    <view class='nav acea-row row-middle'>
+        <view class='item' data-url='/pages/user_money/index' bindtap='goPages'>
+          <view class='pictrue' data-url='/pages/user_info/index' bindtap='goPages'><image src='{{userInfo.avatar}}'></image></view>
+        </view>
+
+        <view class='item' data-url='/pages/user_integral/index' bindtap='goPages'>
+          <view>你未登录，点击登录</view>
+        </view>
+        <view class='item' data-url='/pages/user_coupon/index' bindtap='goPages'>
+          <view>优惠券</view>
+        </view>
+    </view>
+
+    <view>我的积分 0分</view>
+
+    <view>
+      <view>积分商城</view>
+      <view>便民服务</view>
+    </view>
+
+
+   </view>
+
 </view>
+
+<authorize bind:onLoadFun='onLoadFun' isGoIndex='{{isGoIndex}}' iShidden="{{iShidden}}" isAuto="{{isAuto}}"></authorize>
