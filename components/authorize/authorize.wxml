@@ -1,11 +1,15 @@
 <!--pages/authorize/authorize.wxml-->
 <view class='Popup' hidden='{{iShidden}}'>
-   <!-- <image src='{{logo_url}}'></image> -->
-   <view class='title'>广元义警 申请</view>
-   <view class='tip'>获取你的昵称、头像、地区及性别</view>
-   <view class='bottom flex'>
-      <view class='item' bindtap='close'>取消</view>
-      <button class='item grant'  type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="setUserInfo">允许</button>
-   </view>
+  <!-- <image src='{{logo_url}}'></image> -->
+  <view class='title'>
+    <image src="/images/logo2.png"></image>
+    广元义警 申请
+  </view>
+  <view class='tips'>获取你的昵称、头像、地区及性别</view>
+
+  <view class='button-wrapper'>
+    <button bindtap='close' class="button">取消</button>
+    <button type="primary" class="button" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="setUserInfo">允许</button>
+  </view>
 </view>
 <view class='mask' hidden='{{iShidden}}' catchtouchmove="true" bindtap='close'></view>

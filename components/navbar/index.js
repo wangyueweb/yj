@@ -24,7 +24,6 @@ Component({
     this.setData({
       navH: app.globalData.navHeight
     });
-    console.log(this.data.parameter);
   },
   methods: {
     return: function () {

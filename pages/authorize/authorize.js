@@ -1,7 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp()
-console.log(app);
 
 Page({
   data: {
@@ -50,7 +49,6 @@ Page({
     }
   },
   authorize(e) {
-    console.log(e)
     this.setData({
       iShidden: false
     })

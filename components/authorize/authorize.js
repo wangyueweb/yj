@@ -1,7 +1,7 @@
 import { CACHE_USERINFO, CACHE_TOKEN, CACHE_EXPIRES_TIME } from '../../config.js';
-// import Util from '../../utils/util.js';
+import Util from '../../utils/util.js';
 // import { getLogo } from '../../api/api.js';
-// import { login } from '../../api/user.js';
+import { login } from '../../api/user.js';
 
 let app = getApp();
 
@@ -106,31 +106,35 @@ Component({
       let that = this;
       userInfo.spread_spid = app.globalData.spid;//获取推广人ID
       userInfo.spread_code = app.globalData.code;//获取推广人分享二维码ID
-      login(userInfo).then(res => {
-        app.globalData.token = res.data.token;
-        app.globalData.isLog = true;
-        app.globalData.userInfo = res.data.userInfo;
-        app.globalData.expiresTime = res.data.expires_time;
-        wx.setStorageSync(CACHE_TOKEN, res.data.token);
-        wx.setStorageSync(CACHE_EXPIRES_TIME, res.data.expires_time);
-        wx.setStorageSync(CACHE_USERINFO, JSON.stringify(res.data.userInfo));
-        if (res.data.cache_key) wx.setStorage({ key: 'cache_key', data: res.data.cache_key });
-        //取消登录提示
-        wx.hideLoading();
-        //关闭登录弹出窗口
-        that.setData({ iShidden: true, errorSum: 0 });
-        //执行登录完成回调
-        that.triggerEvent('onLoadFun', app.globalData.userInfo);
-      }).catch((err) => {
-        wx.hideLoading();
-        that.data.errorSum++;
-        that.setData({ errorSum: that.data.errorSum });
-        if (that.data.errorSum >= that.data.errorNum) {
-          Util.Tips({ title: err });
-        } else {
-          that.setUserInfo(userInfo);
-        }
-      });
+      login(userInfo)
+        .then(res => {
+          console.log(res);
+          app.globalData.token = res.data.token;
+          app.globalData.isLog = true;
+          app.globalData.userInfo = res.data.userInfo;
+          app.globalData.expiresTime = res.data.expires_time;
+          wx.setStorageSync(CACHE_TOKEN, res.data.token);
+          wx.setStorageSync(CACHE_EXPIRES_TIME, res.data.expires_time);
+          wx.setStorageSync(CACHE_USERINFO, JSON.stringify(res.data.userInfo));
+          if (res.data.cache_key) wx.setStorage({ key: 'cache_key', data: res.data.cache_key });
+          //取消登录提示
+          wx.hideLoading();
+          //关闭登录弹出窗口
+          that.setData({ iShidden: true, errorSum: 0 });
+          //执行登录完成回调
+          that.triggerEvent('onLoadFun', app.globalData.userInfo);
+        })
+        .catch((err) => {
+          console.log(err);
+          wx.hideLoading();
+          that.data.errorSum++;
+          that.setData({ errorSum: that.data.errorSum });
+          if (that.data.errorSum >= that.data.errorNum) {
+            Util.Tips({ title: err });
+          } else {
+            that.setUserInfo(userInfo);
+          }
+        });
     }
   },
 })
