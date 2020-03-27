@@ -92,7 +92,6 @@ Component({
       }else{
         Util.getCodeLogin((res)=>{
           console.log(res);
-
             Util.wxgetUserInfo().then(userInfo=>{
               userInfo.code = res.code;
               that.getWxUserInfo(userInfo);
@@ -103,6 +102,7 @@ Component({
       }
     },
     getWxUserInfo: function (userInfo){
+      console.log(userInfo)
       let that = this;
       userInfo.spread_spid = app.globalData.spid;//获取推广人ID
       userInfo.spread_code = app.globalData.code;//获取推广人分享二维码ID
